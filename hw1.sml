@@ -1,7 +1,8 @@
 fun is_older (date1 : int*int*int, date2 : int*int*int) =
 	(#1 date1) < (#1 date2) orelse
 	((#1 date1) = (#1 date2) andalso (#2 date1) < (#2 date2)) orelse
-	((#2 date1) = (#2 date2) andalso (#3 date1) < (#3 date2))
+	((#1 date1) = (#1 date2) andalso (#2 date1) = (#2 date2) 
+							 andalso (#3 date1) < (#3 date2))
 
 
 fun number_in_month (yearlist: (int*int*int) list, mnth : int)  = 
@@ -17,21 +18,18 @@ fun number_in_months(datelist: (int*int*int) list, mnth_list: int list) =
 	if null mnth_list
 	then 0
 	else
-		if 0 < number_in_month(datelist, (hd mnth_list))
-		then 1 + number_in_months(datelist, (tl mnth_list))
-		else number_in_months(datelist, (tl mnth_list))
+		number_in_month(datelist, (hd mnth_list)) + 
+		number_in_months(datelist, (tl mnth_list))
+
 
 (* (int int int) list, int  -> int list *)
 fun dates_in_month(datelist: (int*int*int) list, mnth: int) =
 	if null datelist
 	then []
 	else
-		let val yr_mnth = (#2 (hd datelist))
-		in
-			if yr_mnth = mnth
-			then (hd datelist) :: dates_in_month((tl datelist), mnth)
-			else dates_in_month((tl datelist), mnth)
-		end
+		if (#2 (hd datelist)) = mnth
+		then (hd datelist) :: dates_in_month((tl datelist), mnth)
+		else dates_in_month((tl datelist), mnth)
 
 
 (* (int int int) list, int list  -> (int*int*int) list *)
@@ -44,12 +42,9 @@ fun dates_in_months(datelist: (int*int*int) list, mnth_list : int list) =
 
 (* string list, int -> string *)
 fun get_nth(stringlist: string list, nelement: int) =
-	if null stringlist
+	if nelement < 2
 	then (hd stringlist)
-	else
-		if nelement < 2
-		then (hd stringlist)
-		else get_nth((tl stringlist), (nelement - 1))
+	else get_nth((tl stringlist), (nelement - 1))
 
 
 (* int*int*int -> string *)
