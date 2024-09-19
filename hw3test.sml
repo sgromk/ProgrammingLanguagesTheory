@@ -26,7 +26,7 @@ val test_longstring2_4 = longest_string2 ["Algae","bota","Cor"] = "Algae"
 val test_longstring2_5 = longest_string2 ["bota","Algae","Cor"] = "Algae"
 val test_longstring2_6 = longest_string2 ["bota","Cor","Algae"] = "Algae" *)
 
-(* val test_longstring3_1 = longest_string3 ["A","bc","C"] = "bc"
+val test_longstring3_1 = longest_string3 ["A","bc","C"] = "bc"
 val test_longstring3_2 = longest_string3 [] = ""
 val test_longstring3_3 = longest_string3 ["A","bc","wz"] = "bc"
 val test_longstring3_4 = longest_string3 ["Algae","bota","Cor"] = "Algae"
@@ -38,7 +38,7 @@ val test_longstring4_2 = longest_string4 [] = ""
 val test_longstring4_3 = longest_string4 ["A","bc","wz"] = "wz"
 val test_longstring4_4 = longest_string4 ["Algae","bota","Cor"] = "Algae"
 val test_longstring4_5 = longest_string4 ["bota","Algae","Cor"] = "Algae"
-val test_longstring4_6 = longest_string4 ["bota","Cor","Algae"] = "Algae" *)
+val test_longstring4_6 = longest_string4 ["bota","Cor","Algae"] = "Algae"
 
 
 (* val test_longcap1 = longest_capitalized ["A","bc","C"] = "C"

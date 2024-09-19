@@ -49,20 +49,23 @@ fun longest_string2 slist = foldl(fn (x,y) => if (String.size(x) >= String.size(
 
 
 (* (int, int -> bool) -> string list -> string *)
-fun longest_string_helper passedFun slist = foldl(fn (x,y) => if passedFun(x,y) then x else y) "" slist
+(* fun longest_string_helper passedFun = List.foldl(fn (x,y) => if passedFun(String.size x, String.size y) then x else y) "" *)
+
+fun longest_string_helper f = List.foldl (fn (str, acc) => if f (String.size str, String.size acc)
+		   then str
+		   else acc) ""
 
 
 (* string list -> string *)
-val longest_string3 = longest_string_helper (fn (x, y) => String.size(x) > String.size(y))
+val longest_string3 = longest_string_helper (fn (x, y) => x > y)
 
 
 (* string list -> string *)
-val longest_string4 = longest_string_helper (fn (x, y) => String.size(x) >= String.size(y))
+val longest_string4 = longest_string_helper (fn (x, y) => x >= y)
 
 
 (* string list -> string *)
-val longest_capitalized = longest_string_helper 
-	(fn (x, y) => (Char.isUpper o (fn z => String.sub (z, 0))) x andalso String.size(x) > String.size(y))
+val longest_capitalized = longest_string1 o only_capitals
 
 
 (* string -> string *)
